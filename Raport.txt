@@ -1,0 +1,13 @@
+Raport:
+22.05.2020: 
+Dodanie klasy "Game", inicjalizacja okna, dodanie mo¿liwoœci zamkniêcia okna za pomoc¹ escape i "x", zrobienie pierwszej postaci "maæka_2".
+23.05.2020:
+Dodanie klasy "Player" i "Walls", wczytanie tekstur "Maciek_2" i "wall", narysowanie gracza i œciany, ruch gracza za pomoc¹ WSAD, kolizja z oknem, kolizja gracza ze œcianami (na razie trochê niepoprawna)
+25.05.2020:
+Dodanie klasy "Boxes", mo¿liwoœæ poruszania pud³ami, dodanie kolizji pud³a ze œcian¹, podczas kolizji pud³a ze œcian¹ gracz siê zatrzymuje. Na razie kolizje nie dzia³aj¹ do koñca poprawnie, dzia³aj¹ poprawnie tylko gdy podczas kolizji u¿ywamy tylko jednego klawisza ruchu.
+29.05.2020:
+Dodanie klasy "Button", narysowanie ca³ego pierwszego poziomu.
+30.05.2020:
+Dodanie klasy "Finish", dodanie mechaniki przycisków i otwierania bram, przechodzenie do nastêpnego poziomu.
+31.05.2020:
+Dodanie klasy "Teleport", dodanie mechaniki teleportowania.
