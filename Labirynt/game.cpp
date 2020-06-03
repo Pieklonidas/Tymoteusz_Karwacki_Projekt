@@ -36,6 +36,8 @@ void Game::initTextures(){
     this->textures_["FINISH"]->loadFromFile("Obrazki\\Finish.png");
     this->textures_["TELEPORT"] = new sf::Texture();
     this->textures_["TELEPORT"]->loadFromFile("Obrazki\\Teleport.png");
+    this->textures_["STRZELEC"] = new sf::Texture();
+    this->textures_["STRZELEC"]->loadFromFile("Obrazki\\Sagittarius.png");
 }
 //Cons/des
 Game::Game()
@@ -258,7 +260,7 @@ void Game::updateBoxCollision(){
                &&sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
 
                     box->setPosition(box->getGlobalBounds().left,
-                                     this->player->getBounds().top+this->player->getBounds().height+1.f);
+                                     this->player->getBounds().top+this->player->getBounds().height);
             }
             //top collision
             else if(playerBounds.top > boxBounds.top
@@ -277,7 +279,7 @@ void Game::updateBoxCollision(){
                &&playerBounds.top + playerBounds.height>boxBounds.top
                &&sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
 
-                    box->setPosition(this->player->getBounds().left + this->player->getBounds().width + 1.f,
+                    box->setPosition(this->player->getBounds().left + this->player->getBounds().width,
                                      box->getGlobalBounds().top);
             }
             //left collision
@@ -714,6 +716,111 @@ void Game::createLevel(int level){
         this->finish = std::make_unique<Finish>();
         this->finish->setTexture(*this->textures_["FINISH"]);
         this->finish->setPosition(200.f,300.f);
+    }
+    if(level == 3){
+        //walls
+        for(int i = 0; i<25; i++){
+            std::unique_ptr<Walls> wall = std::make_unique<Walls>();
+            this->walls.push_back(std::move(wall));
+        }
+        for(auto &wall : this->walls){
+            wall->setTexture(*this->textures_["WALL"]);
+        }
+        this->walls[0]->setTextureRect(sf::IntRect(0,0,240,30));
+        this->walls[0]->setPosition(0.f,210.f);
+        this->walls[1]->setTextureRect(sf::IntRect(0,0,30,240));
+        this->walls[1]->setPosition(240.f,0.f);
+        this->walls[2]->setTextureRect(sf::IntRect(0,0,400,30));
+        this->walls[2]->setPosition(270.f,0.f);
+        this->walls[3]->setTextureRect(sf::IntRect(0,0,30,150));
+        this->walls[3]->setPosition(670.f,0.f);
+        this->walls[4]->setTextureRect(sf::IntRect(0,0,150,30));
+        this->walls[4]->setPosition(700.f,120.f);
+        this->walls[5]->setTextureRect(sf::IntRect(0,0,30,150));
+        this->walls[5]->setPosition(850.f,120.f);
+        this->walls[6]->setTextureRect(sf::IntRect(0,0,150,30));
+        this->walls[6]->setPosition(880.f,240.f);
+        this->walls[7]->setTextureRect(sf::IntRect(0,0,30,240));
+        this->walls[7]->setPosition(1000.f,0.f);
+        this->walls[8]->setTextureRect(sf::IntRect(0,0,30,600));
+        this->walls[8]->setPosition(1170.f,0.f);
+        this->walls[9]->setTextureRect(sf::IntRect(0,0,170,30));
+        this->walls[9]->setPosition(1000.f,570.f);
+        this->walls[10]->setTextureRect(sf::IntRect(0,0,30,260));
+        this->walls[10]->setPosition(1000.f,380.f);
+        this->walls[11]->setTextureRect(sf::IntRect(0,0,150,30));
+        this->walls[11]->setPosition(880.f,380.f);
+        this->walls[12]->setTextureRect(sf::IntRect(0,0,30,120));
+        this->walls[12]->setPosition(850.f,380.f);
+        this->walls[13]->setTextureRect(sf::IntRect(0,0,150,30));
+        this->walls[13]->setPosition(700.f,470.f);
+        this->walls[14]->setTextureRect(sf::IntRect(0,0,30,130));
+        this->walls[14]->setPosition(670.f,470.f);
+        this->walls[15]->setTextureRect(sf::IntRect(0,0,400,30));
+        this->walls[15]->setPosition(270.f,570.f);
+        this->walls[16]->setTextureRect(sf::IntRect(0,0,30,220));
+        this->walls[16]->setPosition(240.f,380.f);
+        this->walls[17]->setTextureRect(sf::IntRect(0,0,240,30));
+        this->walls[17]->setPosition(0.f,380.f);
+        this->walls[18]->setTextureRect(sf::IntRect(0,0,150,30));
+        this->walls[18]->setPosition(560.f,240.f);
+        this->walls[19]->setTextureRect(sf::IntRect(0,0,30,130));
+        this->walls[19]->setPosition(530.f,140.f);
+        this->walls[20]->setTextureRect(sf::IntRect(0,0,150,30));
+        this->walls[20]->setPosition(380.f,140.f);
+        this->walls[21]->setTextureRect(sf::IntRect(0,0,30,270));
+        this->walls[21]->setPosition(380.f,170.f);
+        this->walls[22]->setTextureRect(sf::IntRect(0,0,150,30));
+        this->walls[22]->setPosition(380.f,410.f);
+        this->walls[23]->setTextureRect(sf::IntRect(0,0,30,100));
+        this->walls[23]->setPosition(530.f,340.f);
+        this->walls[24]->setTextureRect(sf::IntRect(0,0,150,30));
+        this->walls[24]->setPosition(560.f,340.f);
+        //boxes
+        for(int i = 0; i<1; i++){
+            std::unique_ptr<Boxes> box = std::make_unique<Boxes>();
+            this->boxes.push_back(std::move(box));
+        }
+        for(auto &box : this->boxes){
+            box->setTexture(*this->textures_["BOX"]);
+            box->setScale(0.6,0.6);
+        }
+        this->boxes[0]->setPosition(1100.f,400.f);
+        //buttons
+        for(int i = 0; i<1; i++){
+            std::unique_ptr<Button> button = std::make_unique<Button>();
+            this->buttons.push_back(std::move(button));
+        }
+        for(auto &button: this->buttons){
+            button->setTexture(*this->textures_["BUTTON"]);
+        }
+        this->buttons[0]->setPosition(1075.f,0.f);
+        //removable walls
+        for(int i = 0; i<1; i++){
+            std::unique_ptr<Walls> wall = std::make_unique<Walls>();
+            this->removableWalls.push_back(std::move(wall));
+            this->counterRemoveWall.push_back(0);
+            this->distance.push_back(0);
+        }
+        for(auto &wall: this->removableWalls){
+            wall->setTexture(*this->textures_["GATE"]);
+        }
+        this->removableWalls[0]->setTextureRect(sf::IntRect(0,0,30,70));
+        this->removableWalls[0]->setPosition(680.f,270.f);
+        for(size_t i = 0; i<this->removableWalls.size(); i++){
+            this->distance[i] = this->removableWalls[i]->getGlobalBounds().height;
+        }
+        this->dirX.push_back(0);
+        this->dirY.push_back(-1);
+        //player
+        this->player = std::make_unique<Player>();
+        this->player->setTexture(this->textures_["GRACZ"]);
+        this->player->setPosition(0.f,245.f);
+        this->player->setScale(0.5f,0.5f);
+        //Finish
+        this->finish = std::make_unique<Finish>();
+        this->finish->setTexture(*this->textures_["FINISH"]);
+        this->finish->setPosition(410.f,290.f);
     }
 }
 

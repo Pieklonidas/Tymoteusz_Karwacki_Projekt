@@ -10,6 +10,7 @@ SOURCES += \
         game.cpp \
         main.cpp \
         player.cpp \
+        sagittarius.cpp \
         teleport.cpp \
         walls.cpp
 
@@ -28,5 +29,6 @@ HEADERS += \
     finish.h \
     game.h \
     player.h \
+    sagittarius.h \
     teleport.h \
     walls.h

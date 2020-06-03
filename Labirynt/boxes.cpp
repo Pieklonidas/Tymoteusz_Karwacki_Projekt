@@ -59,7 +59,7 @@ void Boxes::setCanMove(sf::FloatRect wall){
            &&getGlobalBounds().left + getGlobalBounds().width<wall.left + wall.width
            &&getGlobalBounds().top < wall.top + wall.height
            &&getGlobalBounds().top + getGlobalBounds().height>wall.top){
-                setPosition(wall.left = getGlobalBounds().width,
+                setPosition(wall.left - getGlobalBounds().width,
                             getGlobalBounds().top);
                 this->can_move_right = false;
         }

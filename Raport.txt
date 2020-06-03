@@ -11,3 +11,5 @@ Dodanie klasy "Button", narysowanie ca³ego pierwszego poziomu.
 Dodanie klasy "Finish", dodanie mechaniki przycisków i otwierania bram, przechodzenie do nastêpnego poziomu.
 31.05.2020:
 Dodanie klasy "Teleport", dodanie mechaniki teleportowania.
+03.06.2020:
+Zrobienie trzeciego poziomu, ale na razie bez przeciwnika.
