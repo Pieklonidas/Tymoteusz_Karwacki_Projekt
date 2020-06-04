@@ -9,6 +9,7 @@
 #include "button.h"
 #include "finish.h"
 #include "teleport.h"
+#include "sagittarius.h"
 #include <memory>
 #include <map>
 
@@ -44,6 +45,8 @@ private:
     std::vector<std::unique_ptr<Button>> buttons;
     //Teleporty
     std::vector<std::unique_ptr<Teleport>> teleports;
+    //Strzelcy
+    std::vector<std::unique_ptr<Sagittarius>> sagittariuses;
     //Czas
     sf::Time elapsed;
     sf::Clock* clock;
@@ -73,6 +76,8 @@ public:
     void teleportPlayer();
     void removeWalls();
     void updatePlayer();
+    void updateSagittarius();
+    void doesEnemySeePlayer();
     void resetBoxes();
     void endLevel();
     void update();

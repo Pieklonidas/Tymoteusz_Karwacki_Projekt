@@ -1,3 +1,5 @@
+Ogólne:
+W grze poruszamy siê za pomoc¹ WASD. ¯eby zmieniæ poziom nale¿y w pliku game.cpp w funkcji initVariables() przypisaæ zmiennej "level" ¿¹dan¹ wartoœæ.
 Raport:
 22.05.2020: 
 Dodanie klasy "Game", inicjalizacja okna, dodanie mo¿liwoœci zamkniêcia okna za pomoc¹ escape i "x", zrobienie pierwszej postaci "maæka_2".
@@ -13,3 +15,5 @@ Dodanie klasy "Finish", dodanie mechaniki przycisków i otwierania bram, przechod
 Dodanie klasy "Teleport", dodanie mechaniki teleportowania.
 03.06.2020:
 Zrobienie trzeciego poziomu, ale na razie bez przeciwnika.
+04.06.2020:
+Dodanie przeciwnika, przeciwnik porusza siê po wyznaczonym torze, dodanie mechaniki zauwa¿enia gracza przez wroga.

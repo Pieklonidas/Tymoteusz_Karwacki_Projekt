@@ -15,7 +15,7 @@ void Game::initTime(){
 }
 
 void Game::initVariables(){
-    this->level = 1;
+    this->level = 3;
     this->nextLevel = this->level;
 }
 
@@ -96,6 +96,19 @@ void Game::updatePollEvents(){
         }
         if(this->ev_.key.code == sf::Keyboard::Escape){
             this->window_->close();
+        }
+        if(this->ev_.key.code == sf::Keyboard::R){
+            this->nextLevel = this->level;
+            this->walls.clear();
+            this->boxes.clear();
+            this->buttons.clear();
+            this->removableWalls.clear();
+            this->teleports.clear();
+            this->sagittariuses.clear();
+            this->dirX.clear();
+            this->dirY.clear();
+            this->distance.clear();
+            this->counterRemoveWall.clear();
         }
     }
 }
@@ -403,6 +416,33 @@ void Game::updatePlayer(){
     this->player->move(this->velocity_.x,this->velocity_.y);
 }
 
+void Game::updateSagittarius(){
+    for(auto &sag : this->sagittariuses){
+        for(auto &wall : this->walls){
+            sag->checkCollision(wall->getGlobalBounds(),wall->giveDirectionToEnemy());
+        }
+        sag->update();
+    }
+    for(auto &sag : this->sagittariuses){
+        sag->setVision();
+        for(auto &wall : this->walls){
+            if(wall->getCanBeClosest()
+            &&wall->getGlobalBounds().intersects(sag->getVision())){
+                sag->setVision(wall->getGlobalBounds());
+            }
+        }
+    }
+
+}
+
+void Game::doesEnemySeePlayer(){
+    for(auto &sag : this->sagittariuses){
+        if(this->player->getBounds().intersects(sag->getVision())){
+            std::cout<<"I see you"<<std::endl;
+        }
+    }
+}
+
 void Game::resetBoxes(){
     for(auto &box:this->boxes){
         box->reset();
@@ -417,6 +457,7 @@ void Game::endLevel(){
         this->buttons.clear();
         this->removableWalls.clear();
         this->teleports.clear();
+        this->sagittariuses.clear();
         this->dirX.clear();
         this->dirY.clear();
         this->distance.clear();
@@ -434,6 +475,8 @@ void Game::update(){
     this->updateBoxRemovableWallCollision();
     this->updateBoxPlayerCollision();
     this->updatePlayer();
+    this->updateSagittarius();
+    this->doesEnemySeePlayer();
     this->teleportPlayer();
     this->updateCollision();
     this->updateButtonBox();
@@ -474,6 +517,12 @@ void Game::render(){
     if(this->teleports.size()>0){
         for(auto &tp : this->teleports){
             this->window_->draw(*tp);
+        }
+    }
+
+    if(this->sagittariuses.size()>0){
+        for(auto &sg : this->sagittariuses){
+            this->window_->draw(*sg);
         }
     }
 
@@ -730,14 +779,20 @@ void Game::createLevel(int level){
         this->walls[0]->setPosition(0.f,210.f);
         this->walls[1]->setTextureRect(sf::IntRect(0,0,30,240));
         this->walls[1]->setPosition(240.f,0.f);
-        this->walls[2]->setTextureRect(sf::IntRect(0,0,400,30));
+        this->walls[2]->setTextureRect(sf::IntRect(0,0,400,30));//
         this->walls[2]->setPosition(270.f,0.f);
-        this->walls[3]->setTextureRect(sf::IntRect(0,0,30,150));
+        this->walls[2]->setCanBeClosest(true);
+        this->walls[2]->setDirectionForEnemy(0);
+        this->walls[3]->setTextureRect(sf::IntRect(0,0,30,150));//
         this->walls[3]->setPosition(670.f,0.f);
+        this->walls[3]->setCanBeClosest(true);
+        this->walls[3]->setDirectionForEnemy(1);
         this->walls[4]->setTextureRect(sf::IntRect(0,0,150,30));
         this->walls[4]->setPosition(700.f,120.f);
-        this->walls[5]->setTextureRect(sf::IntRect(0,0,30,150));
+        this->walls[5]->setTextureRect(sf::IntRect(0,0,30,150));//
         this->walls[5]->setPosition(850.f,120.f);
+        this->walls[5]->setCanBeClosest(true);
+        this->walls[5]->setDirectionForEnemy(1);
         this->walls[6]->setTextureRect(sf::IntRect(0,0,150,30));
         this->walls[6]->setPosition(880.f,240.f);
         this->walls[7]->setTextureRect(sf::IntRect(0,0,30,240));
@@ -752,18 +807,26 @@ void Game::createLevel(int level){
         this->walls[11]->setPosition(880.f,380.f);
         this->walls[12]->setTextureRect(sf::IntRect(0,0,30,120));
         this->walls[12]->setPosition(850.f,380.f);
-        this->walls[13]->setTextureRect(sf::IntRect(0,0,150,30));
+        this->walls[13]->setTextureRect(sf::IntRect(0,0,150,30));//
         this->walls[13]->setPosition(700.f,470.f);
+        this->walls[13]->setCanBeClosest(true);
+        this->walls[13]->setDirectionForEnemy(0);
         this->walls[14]->setTextureRect(sf::IntRect(0,0,30,130));
         this->walls[14]->setPosition(670.f,470.f);
-        this->walls[15]->setTextureRect(sf::IntRect(0,0,400,30));
+        this->walls[15]->setTextureRect(sf::IntRect(0,0,400,30));//
         this->walls[15]->setPosition(270.f,570.f);
-        this->walls[16]->setTextureRect(sf::IntRect(0,0,30,220));
+        this->walls[15]->setCanBeClosest(true);
+        this->walls[15]->setDirectionForEnemy(0);
+        this->walls[16]->setTextureRect(sf::IntRect(0,0,30,220));//
         this->walls[16]->setPosition(240.f,380.f);
+        this->walls[16]->setCanBeClosest(true);
+        this->walls[16]->setDirectionForEnemy(1);
         this->walls[17]->setTextureRect(sf::IntRect(0,0,240,30));
         this->walls[17]->setPosition(0.f,380.f);
-        this->walls[18]->setTextureRect(sf::IntRect(0,0,150,30));
+        this->walls[18]->setTextureRect(sf::IntRect(0,0,150,30));//
         this->walls[18]->setPosition(560.f,240.f);
+        this->walls[18]->setCanBeClosest(true);
+        this->walls[18]->setDirectionForEnemy(1);
         this->walls[19]->setTextureRect(sf::IntRect(0,0,30,130));
         this->walls[19]->setPosition(530.f,140.f);
         this->walls[20]->setTextureRect(sf::IntRect(0,0,150,30));
@@ -772,8 +835,10 @@ void Game::createLevel(int level){
         this->walls[21]->setPosition(380.f,170.f);
         this->walls[22]->setTextureRect(sf::IntRect(0,0,150,30));
         this->walls[22]->setPosition(380.f,410.f);
-        this->walls[23]->setTextureRect(sf::IntRect(0,0,30,100));
+        this->walls[23]->setTextureRect(sf::IntRect(0,0,30,100));//
         this->walls[23]->setPosition(530.f,340.f);
+        this->walls[23]->setCanBeClosest(true);
+        this->walls[23]->setDirectionForEnemy(0);
         this->walls[24]->setTextureRect(sf::IntRect(0,0,150,30));
         this->walls[24]->setPosition(560.f,340.f);
         //boxes
@@ -817,6 +882,17 @@ void Game::createLevel(int level){
         this->player->setTexture(this->textures_["GRACZ"]);
         this->player->setPosition(0.f,245.f);
         this->player->setScale(0.5f,0.5f);
+        //Strzelcy
+        for(int i = 0; i<1;i++){
+            std::unique_ptr<Sagittarius> sag = std::make_unique<Sagittarius>();
+            this->sagittariuses.push_back(std::move(sag));
+        }
+        for(auto &sag : this->sagittariuses){
+            sag->setTexture(*this->textures_["STRZELEC"]);
+        }
+        this->sagittariuses[0]->setScale(0.7f,0.7f);
+        this->sagittariuses[0]->setPosition(600.f,480.f);
+        this->sagittariuses[0]->setStartingMove(-2.f,0.f);
         //Finish
         this->finish = std::make_unique<Finish>();
         this->finish->setTexture(*this->textures_["FINISH"]);
