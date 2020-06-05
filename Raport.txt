@@ -1,5 +1,9 @@
 Ogólne:
 W grze poruszamy siê za pomoc¹ WASD. ¯eby zmieniæ poziom nale¿y w pliku game.cpp w funkcji initVariables() przypisaæ zmiennej "level" ¿¹dan¹ wartoœæ.
+Strza³: "Z"
+Podniesienie broni gdy na niej stoimy: "E"
+Wyrzucenie broni: "Q"
+Restart poziomu: "R"
 Raport:
 22.05.2020: 
 Dodanie klasy "Game", inicjalizacja okna, dodanie mo¿liwoœci zamkniêcia okna za pomoc¹ escape i "x", zrobienie pierwszej postaci "maæka_2".
@@ -17,3 +21,5 @@ Dodanie klasy "Teleport", dodanie mechaniki teleportowania.
 Zrobienie trzeciego poziomu, ale na razie bez przeciwnika.
 04.06.2020:
 Dodanie przeciwnika, przeciwnik porusza siê po wyznaczonym torze, dodanie mechaniki zauwa¿enia gracza przez wroga.
+05.06.2020:
+Dodanie klasy abstrakcyjnej "Weapons", klasy "Rifle" oraz klasy "Bullets", zrobienie karabinu, mo¿na z niego strzelaæ, dodanie przeciwnikowi mo¿liwoœæ strzelania, pociski przeciwnika zatrzymuj¹ siê na graczu.

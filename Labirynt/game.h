@@ -10,6 +10,8 @@
 #include "finish.h"
 #include "teleport.h"
 #include "sagittarius.h"
+#include "bullets.h"
+#include "rifle.h"
 #include <memory>
 #include <map>
 
@@ -31,6 +33,7 @@ private:
     std::unique_ptr<Player> player;
     sf::FloatRect nextPos_;
     sf::Vector2f velocity_;
+    float relodeTime;
     //Sciany
     std::vector<std::unique_ptr<Walls>> walls;
     std::vector<std::unique_ptr<Walls>> removableWalls;
@@ -47,6 +50,11 @@ private:
     std::vector<std::unique_ptr<Teleport>> teleports;
     //Strzelcy
     std::vector<std::unique_ptr<Sagittarius>> sagittariuses;
+    //Pociski
+    std::vector<Bullets*> enemyBullets;
+    std::vector<Bullets*> playerBullets;
+    //Bronie
+    std::vector<std::unique_ptr<Weapons>> weapons;
     //Czas
     sf::Time elapsed;
     sf::Clock* clock;
@@ -76,8 +84,14 @@ public:
     void teleportPlayer();
     void removeWalls();
     void updatePlayer();
+    void weaponPicked();
+    void playerIsShooting();
+    void updateWeaponsReload();
     void updateSagittarius();
     void doesEnemySeePlayer();
+    void updateBullets();
+    void updatePlayerBullets();
+    void updateCombat();
     void resetBoxes();
     void endLevel();
     void update();

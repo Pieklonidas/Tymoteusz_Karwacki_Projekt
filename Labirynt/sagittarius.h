@@ -9,6 +9,8 @@ private:
     float dirX;
     float dirY;
     sf::FloatRect vision;
+    float relodeTime;
+    float relodeTimeMax;
 public:
     Sagittarius();
     ~Sagittarius();
@@ -22,6 +24,8 @@ public:
     //Functions
     void checkCollision(sf::FloatRect wall, int wallDir);
     void update();
+    sf::Vector2f shootDirection();
+    bool startShooting();
 };
 
 #endif // SAGITTARIUS_H

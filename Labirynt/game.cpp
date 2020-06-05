@@ -15,7 +15,7 @@ void Game::initTime(){
 }
 
 void Game::initVariables(){
-    this->level = 3;
+    this->level = 1;
     this->nextLevel = this->level;
 }
 
@@ -38,6 +38,10 @@ void Game::initTextures(){
     this->textures_["TELEPORT"]->loadFromFile("Obrazki\\Teleport.png");
     this->textures_["STRZELEC"] = new sf::Texture();
     this->textures_["STRZELEC"]->loadFromFile("Obrazki\\Sagittarius.png");
+    this->textures_["BULLET"] = new sf::Texture();
+    this->textures_["BULLET"]->loadFromFile("Obrazki\\Bullets.png");
+    this->textures_["RIFLE"] = new sf::Texture();
+    this->textures_["RIFLE"]->loadFromFile("Obrazki\\Rifle.png");
 }
 //Cons/des
 Game::Game()
@@ -60,6 +64,14 @@ Game::~Game()
 
     for(auto &i : textures_){
         delete i.second;
+    }
+
+    for(auto *i : this->enemyBullets){
+        delete i;
+    }
+
+    for(auto *bul : this->playerBullets){
+        delete bul;
     }
 
     delete this->clock;
@@ -108,7 +120,44 @@ void Game::updatePollEvents(){
             this->dirX.clear();
             this->dirY.clear();
             this->distance.clear();
+            this->enemyBullets.clear();
             this->counterRemoveWall.clear();
+            this->weapons.clear();
+            for(auto *bul : this->enemyBullets){
+                delete bul;
+            }
+            this->enemyBullets.clear();
+            for(auto *bul : this->playerBullets){
+                delete bul;
+            }
+            this->playerBullets.clear();
+        }
+        if(this->ev_.key.code == sf::Keyboard::E){
+            for(auto &w : this->weapons){
+                if(this->player->getBounds().intersects(w->getGlobalBounds())){
+                    w->pickUpWeapon(true);
+                }
+            }
+        }
+        if(this->ev_.key.code == sf::Keyboard::Q){
+            for(auto &w : this->weapons){
+                if(this->player->getBounds().intersects(w->getGlobalBounds())){
+                    w->pickUpWeapon(false);
+                }
+            }
+        }
+        if(this->ev_.key.code == sf::Keyboard::Z){
+            for(auto &w : this->weapons){
+                if(w->isPicked()&&w->reload()){
+                    this->playerBullets.push_back(new Bullets(
+                                                     this->textures_["BULLET"],
+                                                     w->shoot().x,
+                                                     w->shoot().y,
+                                                     w->getGlobalBounds().left,
+                                                     w->getGlobalBounds().top+w->getGlobalBounds().height/2
+                                                     ));
+                }
+            }
         }
     }
 }
@@ -416,6 +465,22 @@ void Game::updatePlayer(){
     this->player->move(this->velocity_.x,this->velocity_.y);
 }
 
+void Game::weaponPicked(){
+    for(auto &w : this->weapons){
+        if(w->isPicked()){
+            w->setPosition(this->player->getBounds().left,
+                           this->player->getBounds().top + this->player->getBounds().height/2);
+        }
+    }
+}
+
+void Game::updateWeaponsReload(){
+    for(auto &w : this->weapons){
+        w->updateReload();
+        w->updateDirection();
+    }
+}
+
 void Game::updateSagittarius(){
     for(auto &sag : this->sagittariuses){
         for(auto &wall : this->walls){
@@ -437,9 +502,92 @@ void Game::updateSagittarius(){
 
 void Game::doesEnemySeePlayer(){
     for(auto &sag : this->sagittariuses){
-        if(this->player->getBounds().intersects(sag->getVision())){
-            std::cout<<"I see you"<<std::endl;
+        if(this->player->getBounds().intersects(sag->getVision())&&sag->startShooting()){
+            this->enemyBullets.push_back(new Bullets(
+                                             this->textures_["BULLET"],
+                                             sag->shootDirection().x,
+                                             sag->shootDirection().y,
+                                             sag->getGlobalBounds().left,
+                                             sag->getGlobalBounds().top+sag->getGlobalBounds().height/2
+                                             ));
         }
+    }
+}
+
+
+void Game::updateBullets(){
+    unsigned counter = 0;
+    for(auto *bul : this->enemyBullets){
+        bul->shoot();
+        //Right border
+        if(bul->getGlobalBounds().left > this->window_->getSize().x){
+            delete this->enemyBullets.at(counter);
+            this->enemyBullets.erase(this->enemyBullets.begin() + counter);
+            counter--;
+        }
+        //Left border
+        else if(bul->getGlobalBounds().left+bul->getGlobalBounds().width < 0){
+            delete this->enemyBullets.at(counter);
+            this->enemyBullets.erase(this->enemyBullets.begin() + counter);
+            counter --;
+        }
+        //Bottom border
+        if(bul->getGlobalBounds().top > this->window_->getSize().y){
+            delete this->enemyBullets.at(counter);
+            this->enemyBullets.erase(this->enemyBullets.begin() + counter);
+            counter --;
+        }
+        //Top border
+        else if(bul->getGlobalBounds().top + bul->getGlobalBounds().height < 0){
+            delete this->enemyBullets.at(counter);
+            this->enemyBullets.erase(this->enemyBullets.begin() + counter);
+            counter --;
+        }
+        counter++;
+    }
+}
+
+void Game::updatePlayerBullets(){
+    unsigned counter = 0;
+    for(auto *bul : this->playerBullets){
+        bul->shoot();
+        //Right border
+        if(bul->getGlobalBounds().left > this->window_->getSize().x){
+            delete this->playerBullets.at(counter);
+            this->playerBullets.erase(this->playerBullets.begin() + counter);
+            counter--;
+        }
+        //Left border
+        else if(bul->getGlobalBounds().left+bul->getGlobalBounds().width < 0){
+            delete this->playerBullets.at(counter);
+            this->playerBullets.erase(this->playerBullets.begin() + counter);
+            counter --;
+        }
+        //Bottom border
+        if(bul->getGlobalBounds().top > this->window_->getSize().y){
+            delete this->playerBullets.at(counter);
+            this->playerBullets.erase(this->playerBullets.begin() + counter);
+            counter --;
+        }
+        //Top border
+        else if(bul->getGlobalBounds().top + bul->getGlobalBounds().height < 0){
+            delete this->playerBullets.at(counter);
+            this->playerBullets.erase(this->playerBullets.begin() + counter);
+            counter --;
+        }
+        counter++;
+    }
+}
+
+void Game::updateCombat(){
+    unsigned counter = 0;
+    for(auto *bul : this->enemyBullets){
+        if(bul->getGlobalBounds().intersects(this->player->getBounds())){
+            this->enemyBullets.at(counter);
+            this->enemyBullets.erase(this->enemyBullets.begin() + counter);
+            counter--;
+        }
+        counter++;
     }
 }
 
@@ -462,6 +610,15 @@ void Game::endLevel(){
         this->dirY.clear();
         this->distance.clear();
         this->counterRemoveWall.clear();
+        for(auto *bul : this->enemyBullets){
+            delete bul;
+        }
+        this->enemyBullets.clear();
+        for(auto *bul : this->playerBullets){
+            delete bul;
+        }
+        this->playerBullets.clear();
+        this->weapons.clear();
     }
 }
 
@@ -475,7 +632,12 @@ void Game::update(){
     this->updateBoxRemovableWallCollision();
     this->updateBoxPlayerCollision();
     this->updatePlayer();
+    this->weaponPicked();
+    this->updateWeaponsReload();
     this->updateSagittarius();
+    this->updateBullets();
+    this->updatePlayerBullets();
+    this->updateCombat();
     this->doesEnemySeePlayer();
     this->teleportPlayer();
     this->updateCollision();
@@ -526,7 +688,26 @@ void Game::render(){
         }
     }
 
+    if(this->enemyBullets.size()>0){
+        for(auto *bul : this->enemyBullets){
+            this->window_->draw(*bul);
+        }
+    }
+
+    if(this->playerBullets.size()>0){
+        for(auto *bul : this->playerBullets){
+            this->window_->draw(*bul);
+        }
+    }
+
     this->player->render(*this->window_);
+
+    if(this->weapons.size()>0){
+        for(auto &w : this->weapons){
+            this->window_->draw(*w);
+        }
+    }
+
 
     this->window_->display();
 }
@@ -882,6 +1063,11 @@ void Game::createLevel(int level){
         this->player->setTexture(this->textures_["GRACZ"]);
         this->player->setPosition(0.f,245.f);
         this->player->setScale(0.5f,0.5f);
+        //Weapons
+        std::unique_ptr<Weapons> rifle = std::make_unique<Rifle>(this->textures_["RIFLE"]);
+        this->weapons.push_back(std::move(rifle));
+        this->weapons[0]->setPosition(1050.f,400.f);
+        this->weapons[0]->setScale(0.3,0.3);
         //Strzelcy
         for(int i = 0; i<1;i++){
             std::unique_ptr<Sagittarius> sag = std::make_unique<Sagittarius>();

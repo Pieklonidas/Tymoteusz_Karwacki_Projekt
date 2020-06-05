@@ -1,18 +1,21 @@
 TEMPLATE = app
-CONFIG += console c++17
+CONFIG += console c++20
 CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
         boxes.cpp \
+        bullets.cpp \
         button.cpp \
         finish.cpp \
         game.cpp \
         main.cpp \
         player.cpp \
+        rifle.cpp \
         sagittarius.cpp \
         teleport.cpp \
-        walls.cpp
+        walls.cpp \
+        weapons.cpp
 
 INCLUDEPATH += "C:/SFML-2.5.1/include"
 
@@ -25,10 +28,13 @@ CONFIG(debug, debug|release){
 
 HEADERS += \
     boxes.h \
+    bullets.h \
     button.h \
     finish.h \
     game.h \
     player.h \
+    rifle.h \
     sagittarius.h \
     teleport.h \
-    walls.h
+    walls.h \
+    weapons.h

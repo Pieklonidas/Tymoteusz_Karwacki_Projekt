@@ -1,0 +1,12 @@
+boxes.o
+bullets.o
+button.o
+finish.o
+game.o
+main.o
+player.o
+rifle.o
+sagittarius.o
+teleport.o
+walls.o
+weapons.o

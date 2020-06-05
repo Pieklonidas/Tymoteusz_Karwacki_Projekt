@@ -4,6 +4,8 @@
 Sagittarius::Sagittarius(){
     this->dirX = 0;
     this->dirY = 0;
+    this->relodeTimeMax = 20;
+    this->relodeTime = this->relodeTimeMax;
 }
 
 Sagittarius::~Sagittarius(){
@@ -137,7 +139,33 @@ void Sagittarius::update(){
     move(dirX,dirY);
 }
 
+sf::Vector2f Sagittarius::shootDirection(){
+    sf::Vector2f dir = sf::Vector2f(0.f,0.f);
+    if(this->dirX>0){
+        dir.x = 1.f;
+    }
+    else if(this->dirX<0){
+        dir.x = -1.f;
+    }
+    if(this->dirY>0){
+        dir.y = 1.f;
+    }
+    else if(this->dirY<0){
+        dir.y = -1.f;
+    }
+    return dir;
+}
 
+bool Sagittarius::startShooting(){
+    if(this->relodeTime == this->relodeTimeMax){
+        this->relodeTime = 0;
+        return true;
+    }
+    else{
+        this->relodeTime += 1;
+        return false;
+    }
+}
 
 
 
