@@ -9,6 +9,12 @@ SOURCES += \
         button.cpp \
         finish.cpp \
         game.cpp \
+        game_collision.cpp \
+        game_create_end_level.cpp \
+        game_gracz.cpp \
+        game_init.cpp \
+        game_wrog.cpp \
+        gun.cpp \
         main.cpp \
         player.cpp \
         rifle.cpp \
@@ -32,6 +38,7 @@ HEADERS += \
     button.h \
     finish.h \
     game.h \
+    gun.h \
     player.h \
     rifle.h \
     sagittarius.h \

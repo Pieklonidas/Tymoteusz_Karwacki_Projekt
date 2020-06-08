@@ -3,6 +3,12 @@ bullets.o
 button.o
 finish.o
 game.o
+game_collision.o
+game_create_end_level.o
+game_gracz.o
+game_init.o
+game_wrog.o
+gun.o
 main.o
 player.o
 rifle.o

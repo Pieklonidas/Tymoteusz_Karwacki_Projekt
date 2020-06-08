@@ -1,11 +1,13 @@
 #include "sagittarius.h"
 
 //Cons/des
-Sagittarius::Sagittarius(){
+Sagittarius::Sagittarius(sf::Texture *texture) : sf::Sprite(){
     this->dirX = 0;
     this->dirY = 0;
     this->relodeTimeMax = 20;
     this->relodeTime = this->relodeTimeMax;
+    setTexture(*texture);
+    setTextureRect(sf::IntRect(0,0,50,98));
 }
 
 Sagittarius::~Sagittarius(){
@@ -68,6 +70,22 @@ void Sagittarius::setVision(sf::FloatRect wall){
         if(vision.intersects(wall)){
             this->vision.height = wall.top - getGlobalBounds().top - getGlobalBounds().height;
         }
+    }
+}
+
+void Sagittarius::updateApperance(){
+    if(dirX > 0){
+        setTextureRect(sf::IntRect(52,0,50,98));
+    }
+    else if(dirX<0){
+        setTextureRect(sf::IntRect(0,0,50,98));
+    }
+
+    if(dirY > 0){
+        setTextureRect(sf::IntRect(104,0,35,98));
+    }
+    else if(dirY<0){
+        setTextureRect(sf::IntRect(141,0,35,98));
     }
 }
 //Accessors
@@ -136,6 +154,7 @@ void Sagittarius::checkCollision(sf::FloatRect wall, int wallDir){
 }
 
 void Sagittarius::update(){
+    updateApperance();
     move(dirX,dirY);
 }
 

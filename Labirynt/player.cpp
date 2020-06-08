@@ -17,6 +17,7 @@ Player::~Player(){
 //Modifiers
 void Player::setTexture(sf::Texture *texture){
     this->player_.setTexture(*texture);
+    this->player_.setTextureRect(sf::IntRect(0,0,44,85));
 }
 
 void Player::setPosition(const float X, const float Y){
@@ -26,6 +27,22 @@ void Player::setPosition(const float X, const float Y){
 void Player::setScale(const float x, const float y){
     this->player_.setScale(x,y);
 }
+
+void Player::updateAppearance(){
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+        this->player_.setTextureRect(sf::IntRect(103,0,44,85));
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+        this->player_.setTextureRect(sf::IntRect(51,0,44,85));
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+        this->player_.setTextureRect(sf::IntRect(155,0,44,85));
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+        this->player_.setTextureRect(sf::IntRect(0,0,44,85));
+    }
+}
+
 //Accessors
 const sf::Vector2f& Player::getPos() const{
     return this->player_.getPosition();
@@ -44,7 +61,7 @@ void Player::move(const float dirX, const float dirY){
 }
 
 void Player::update(){
-
+    this->updateAppearance();
 }
 
 void Player::render(sf::RenderTarget& target){

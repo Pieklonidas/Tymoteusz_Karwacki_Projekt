@@ -12,6 +12,7 @@
 #include "sagittarius.h"
 #include "bullets.h"
 #include "rifle.h"
+#include "gun.h"
 #include <memory>
 #include <map>
 
@@ -29,6 +30,9 @@ private:
     std::unique_ptr<Finish> finish;
     //Tekstury
     std::map<std::string,sf::Texture*> textures_;
+    //Gui
+    sf::Font font;
+    sf::Text endgameText;
     //Gracz
     std::unique_ptr<Player> player;
     sf::FloatRect nextPos_;
@@ -58,10 +62,13 @@ private:
     //Czas
     sf::Time elapsed;
     sf::Clock* clock;
+    //Koniec gry
+    bool endgame;
     //Inicjacje
     void initWindow();
     void initTime();
     void initVariables();
+    void initGui();
     void initTextures();
 
 public:
@@ -91,6 +98,7 @@ public:
     void doesEnemySeePlayer();
     void updateBullets();
     void updatePlayerBullets();
+    void updateCombatPlayer();
     void updateCombat();
     void resetBoxes();
     void endLevel();

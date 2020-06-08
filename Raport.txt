@@ -22,4 +22,7 @@ Zrobienie trzeciego poziomu, ale na razie bez przeciwnika.
 04.06.2020:
 Dodanie przeciwnika, przeciwnik porusza siê po wyznaczonym torze, dodanie mechaniki zauwa¿enia gracza przez wroga.
 05.06.2020:
-Dodanie klasy abstrakcyjnej "Weapons", klasy "Rifle" oraz klasy "Bullets", zrobienie karabinu, mo¿na z niego strzelaæ, dodanie przeciwnikowi mo¿liwoœæ strzelania, pociski przeciwnika zatrzymuj¹ siê na graczu.
+Dodanie klasy abstrakcyjnej "Weapons", klasy "Rifle" dziedzicz¹cej po klasie "Weapons" oraz klasy "Bullets", zrobienie karabinu, mo¿na z niego strzelaæ, dodanie przeciwnikowi mo¿liwoœæ strzelania, pociski przeciwnika zatrzymuj¹ siê na graczu.
+07.06.2020:
+Dodanie klasy "Gun" dziedzicz¹cej po klasie "Weapons", zrobienie pistoletu, z którego mo¿na strzelaæ, dodanie warunku koñcz¹cego grê oraz napisu na koniec gry, bohater oraz strzelec s¹ zwróceni teraz w kierunku ruchu,
+dodanie mo¿liwoœci strzelenia w przeciwnika, na ten moment nic nie dzieje siê z przeciwnikiem po trafieniu, porz¹dne zakomentowanie niektórych funkcji, dodanie dodatkowych plików typu .cpp oraz roz³o¿enie wielu funkcji z pliku game.cpp na inne pliki .cpp

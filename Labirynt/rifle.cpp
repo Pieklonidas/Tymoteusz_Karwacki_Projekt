@@ -3,7 +3,7 @@ Rifle::Rifle(sf::Texture* texture) : Weapons(texture){
     this->dir = sf::Vector2f(0.f,0.f);
     this->reloadTimeMax = 10.f;
     this->reloadTime = this->reloadTimeMax;
-    this->bulletSpeed = 20.f;
+    this->bulletSpeed = 30.f;
 }
 
 

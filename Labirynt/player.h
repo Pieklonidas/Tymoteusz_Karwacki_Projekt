@@ -21,6 +21,7 @@ public:
     void setTexture(sf::Texture* texture);
     void setPosition(const float X, const float Y);
     void setScale(const float x, const float y);
+    void updateAppearance();
     //Accessors
     const sf::Vector2f& getPos() const;
     const sf::FloatRect getBounds() const;

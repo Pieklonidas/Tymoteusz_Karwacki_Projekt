@@ -12,12 +12,13 @@ private:
     float relodeTime;
     float relodeTimeMax;
 public:
-    Sagittarius();
+    Sagittarius(sf::Texture* texture);
     ~Sagittarius();
     //Modifiers
     void setStartingMove(const float X, const float Y);
     void setVision();
     void setVision(sf::FloatRect wall);
+    void updateApperance();
     //Accessors
     const sf::FloatRect getVision() const;
 
