@@ -26,3 +26,5 @@ Dodanie klasy abstrakcyjnej "Weapons", klasy "Rifle" dziedzicz¹cej po klasie "We
 07.06.2020:
 Dodanie klasy "Gun" dziedzicz¹cej po klasie "Weapons", zrobienie pistoletu, z którego mo¿na strzelaæ, dodanie warunku koñcz¹cego grê oraz napisu na koniec gry, bohater oraz strzelec s¹ zwróceni teraz w kierunku ruchu,
 dodanie mo¿liwoœci strzelenia w przeciwnika, na ten moment nic nie dzieje siê z przeciwnikiem po trafieniu, porz¹dne zakomentowanie niektórych funkcji, dodanie dodatkowych plików typu .cpp oraz roz³o¿enie wielu funkcji z pliku game.cpp na inne pliki .cpp
+12.06.2020:
+Dodanie mo¿liwoœci pokonania przeciwnika, stowarzenie 4 poziomu, jeszcze niedokoñczonego.

@@ -135,10 +135,11 @@ void Game::updateCombatPlayer(){
     */
     unsigned counter = 0;
     for(auto *bul : this->playerBullets){
-        for(auto &e : this->sagittariuses){
-            if(bul->getGlobalBounds().intersects(e->getGlobalBounds())){
+        for(size_t i = 0; i<this->sagittariuses.size();i++){
+            if(bul->getGlobalBounds().intersects(this->sagittariuses[i]->getGlobalBounds())){
                 delete this->playerBullets.at(counter);
                 this->playerBullets.erase(this->playerBullets.begin() + counter);
+                this->sagittariuses.erase(this->sagittariuses.begin() + i);
                 counter--;
             }
         }
