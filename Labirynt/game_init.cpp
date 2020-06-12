@@ -77,6 +77,8 @@ void Game::initTextures(){
     this->textures_["RIFLE"]->loadFromFile("Obrazki\\Rifle.png");
     this->textures_["GUN"] = new sf::Texture();
     this->textures_["GUN"]->loadFromFile("Obrazki\\Gun.png");
+    this->textures_["RANDOMDOG"] = new sf::Texture();
+    this->textures_["RANDOMDOG"]->loadFromFile("Obrazki\\RandomDog.png");
 }
 
 

@@ -11,6 +11,7 @@ game_wrog.o
 gun.o
 main.o
 player.o
+randomdog.o
 rifle.o
 sagittarius.o
 teleport.o

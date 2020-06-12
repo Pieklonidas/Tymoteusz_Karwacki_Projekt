@@ -19,6 +19,14 @@ void Game::updateSagittarius(){
     }
 }
 
+void Game::updateRandDogs(){
+    for(auto &d : randDogs){
+        d->setPossibleTrack(this->walls);
+        d->updatePossibleWay();
+        d->update();
+    }
+}
+
 void Game::doesEnemySeePlayer(){
     for(auto &sag : this->sagittariuses){
         if(this->player->getBounds().intersects(sag->getVision())&&sag->startShooting()){

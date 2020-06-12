@@ -13,6 +13,7 @@
 #include "bullets.h"
 #include "rifle.h"
 #include "gun.h"
+#include "randomdog.h"
 #include <memory>
 #include <map>
 
@@ -54,6 +55,8 @@ private:
     std::vector<std::unique_ptr<Teleport>> teleports;
     //Strzelcy
     std::vector<std::unique_ptr<Sagittarius>> sagittariuses;
+    //Random dogs
+    std::vector<std::unique_ptr<RandomDog>> randDogs;
     //Pociski
     std::vector<Bullets*> enemyBullets;
     std::vector<Bullets*> playerBullets;
@@ -95,6 +98,7 @@ public:
     void playerIsShooting();
     void updateWeaponsReload();
     void updateSagittarius();
+    void updateRandDogs();
     void doesEnemySeePlayer();
     void updateBullets();
     void updatePlayerBullets();

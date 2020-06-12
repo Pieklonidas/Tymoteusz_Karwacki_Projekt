@@ -132,6 +132,7 @@ void Game::update(){
     this->weaponPicked();
     this->updateWeaponsReload();
     this->updateSagittarius();
+    this->updateRandDogs();
     this->updateBullets();
     this->updatePlayerBullets();
     this->updateCombatPlayer();
@@ -186,6 +187,12 @@ void Game::render(){
     if(this->sagittariuses.size()>0){
         for(auto &sg : this->sagittariuses){
             this->window_->draw(*sg);
+        }
+    }
+
+    if(this->randDogs.size()>0){
+        for(auto &dog : this->randDogs){
+            this->window_->draw(*dog);
         }
     }
 

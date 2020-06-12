@@ -590,6 +590,14 @@ void Game::createLevel(int level){
         this->sagittariuses[1]->setScale(0.7f,0.7f);
         this->sagittariuses[1]->setPosition(280.f,40.f);
         this->sagittariuses[1]->setStartingMove(2.f,0.f);
+        //RandomDogs
+        for(int i = 0; i<1; i++){
+            std::unique_ptr<RandomDog> dog = std::make_unique<RandomDog>(this->textures_["RANDOMDOG"]);
+            this->randDogs.push_back(std::move(dog));
+        }
+        this->randDogs[0]->setScale(0.7f,0.7f);
+        this->randDogs[0]->setPosition(1146.f,36.f);
+        this->randDogs[0]->setMovementSpeed(-2.f,2.f);
         //Finish
         this->finish = std::make_unique<Finish>();
         this->finish->setScale(0.8f,0.8f);

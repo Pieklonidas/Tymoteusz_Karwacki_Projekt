@@ -17,6 +17,7 @@ SOURCES += \
         gun.cpp \
         main.cpp \
         player.cpp \
+        randomdog.cpp \
         rifle.cpp \
         sagittarius.cpp \
         teleport.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     game.h \
     gun.h \
     player.h \
+    randomdog.h \
     rifle.h \
     sagittarius.h \
     teleport.h \
