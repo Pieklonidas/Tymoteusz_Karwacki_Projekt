@@ -132,6 +132,7 @@ void Game::update(){
     this->weaponPicked();
     this->updateWeaponsReload();
     this->updateSagittarius();
+    this->dogChangeDir();
     this->updateRandDogs();
     this->updateBullets();
     this->updatePlayerBullets();
@@ -177,6 +178,12 @@ void Game::render(){
     }
 
     this->window_->draw(*this->finish);
+    /*
+    if(this->changeDirection.size()>0){
+        for(auto &rect : this->changeDirection){
+            this->window_->draw(rect);
+        }
+    }*/
 
     if(this->teleports.size()>0){
         for(auto &tp : this->teleports){
@@ -215,6 +222,7 @@ void Game::render(){
             this->window_->draw(*w);
         }
     }
+
 
     //endgame screen
     if(this->endgame){

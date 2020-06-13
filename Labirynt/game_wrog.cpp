@@ -27,6 +27,66 @@ void Game::updateRandDogs(){
     }
 }
 
+void Game::dogChangeDir(){
+    for(auto &d : this->randDogs){
+        for(size_t i = 0; i<this->changeDirection.size(); i++){
+            if(d->getGlobalBounds().intersects(this->changeDirection[i].getGlobalBounds())){
+                    if(firstTime[i]){
+                            if(d->getDirection().y > 0){
+                                int dir2 = rand()%3;
+                                if(dir2 == 0){
+                                    d->setMovementSpeed(3.f,0.f);
+                                }
+                                else if(dir2 == 1){
+                                    d->setMovementSpeed(0.f,3.f);
+                                }
+                                else if(dir2 == 2){
+                                    d->setMovementSpeed(-3.f,0.f);
+                                }
+                            }
+                            else if(d->getDirection().y < 0){
+                                int dir2 = rand()%3;
+                                if(dir2 == 0){
+                                    d->setMovementSpeed(3.f,0.f);
+                                }
+                                else if(dir2 == 1){
+                                    d->setMovementSpeed(0.f,-3.f);
+                                }
+                                else if(dir2 == 2){
+                                    d->setMovementSpeed(-3.f,0.f);
+                                }
+                            }
+                            else if(d->getDirection().x > 0){
+                                int dir2 = rand()%3;
+                                if(dir2 == 0){
+                                    d->setMovementSpeed(0.f,-3.f);
+                                }
+                                else if(dir2 == 1){
+                                    d->setMovementSpeed(3.f,0.f);
+                                }
+                                else if(dir2 == 2){
+                                    d->setMovementSpeed(0.f,3.f);
+                                }
+                            }
+                            else if(d->getDirection().x < 0){
+                                int dir2 = rand()%3;
+                                if(dir2 == 0){
+                                    d->setMovementSpeed(-3.f,0.f);
+                                }
+                                else if(dir2 == 1){
+                                    d->setMovementSpeed(0.f,-3.f);
+                                }
+                                else if(dir2 == 2){
+                                    d->setMovementSpeed(0.f,3.f);
+                                }
+                            }
+                        firstTime[i] = false;
+                    }
+                }else firstTime[i] = true;
+            }
+        }
+    }
+
 void Game::doesEnemySeePlayer(){
     for(auto &sag : this->sagittariuses){
         if(this->player->getBounds().intersects(sag->getVision())&&sag->startShooting()){

@@ -57,6 +57,8 @@ private:
     std::vector<std::unique_ptr<Sagittarius>> sagittariuses;
     //Random dogs
     std::vector<std::unique_ptr<RandomDog>> randDogs;
+    std::vector<sf::RectangleShape> changeDirection;
+    std::vector<bool> firstTime;
     //Pociski
     std::vector<Bullets*> enemyBullets;
     std::vector<Bullets*> playerBullets;
@@ -99,6 +101,7 @@ public:
     void updateWeaponsReload();
     void updateSagittarius();
     void updateRandDogs();
+    void dogChangeDir();
     void doesEnemySeePlayer();
     void updateBullets();
     void updatePlayerBullets();

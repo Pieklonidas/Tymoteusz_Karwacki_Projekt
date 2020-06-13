@@ -7,7 +7,6 @@
 class RandomDog : public sf::Sprite
 {
 private:
-    sf::FloatRect surroundings;
     bool top;
     bool bottom;
     bool left;
@@ -16,6 +15,7 @@ private:
     sf::Vector2f velocity;
 public:
     RandomDog(sf::Texture* texture);
+    sf::Vector2f getDirection();
     void setPossibleTrack(std::vector<std::unique_ptr<Walls>>& walls);
     void updateSurroundings();
     void updatePossibleWay();

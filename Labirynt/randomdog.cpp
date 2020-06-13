@@ -5,11 +5,6 @@
 RandomDog::RandomDog(sf::Texture* texture)
 {
     setTexture(*texture);
-    this->surroundings = getGlobalBounds();
-    this->surroundings.top += 5;
-    this->surroundings.left += 5;
-    this->surroundings.width += 5;
-    this->surroundings.height += 5;
     this->top = true;
     this->bottom = true;
     this->left = true;
@@ -65,11 +60,6 @@ void RandomDog::setPossibleTrack(std::vector<std::unique_ptr<Walls> > &walls){
 }
 
 void RandomDog::updateSurroundings(){
-    this->surroundings = getGlobalBounds();
-    this->surroundings.top += 5;
-    this->surroundings.left += 5;
-    this->surroundings.width += 5;
-    this->surroundings.height += 5;
     this->top = true;
     this->bottom = true;
     this->left = true;
@@ -102,7 +92,9 @@ void RandomDog::update(){
     move(velocity);
 }
 
-
+sf::Vector2f RandomDog::getDirection(){
+    return velocity;
+}
 
 
 

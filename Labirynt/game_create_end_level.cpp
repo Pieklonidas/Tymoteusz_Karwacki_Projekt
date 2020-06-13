@@ -597,7 +597,26 @@ void Game::createLevel(int level){
         }
         this->randDogs[0]->setScale(0.7f,0.7f);
         this->randDogs[0]->setPosition(1146.f,36.f);
-        this->randDogs[0]->setMovementSpeed(-2.f,2.f);
+        this->randDogs[0]->setMovementSpeed(0.f,2.f);
+        for(int i = 0; i<3; i++){
+            this->changeDirection.push_back(sf::RectangleShape(sf::Vector2f(60.f,70.f)));
+        }
+        for(auto &rect : this->changeDirection){
+            rect.setSize(sf::Vector2f(60.f - this->randDogs[0]->getGlobalBounds().width*2.f,
+                                      70.f - this->randDogs[0]->getGlobalBounds().height*2.f));
+        }
+        this->changeDirection[0].setFillColor(sf::Color::Green);
+        this->changeDirection[0].setPosition(1140.f + this->randDogs[0]->getGlobalBounds().width,
+                                             400.f + this->randDogs[0]->getGlobalBounds().height);
+        this->changeDirection[1].setFillColor(sf::Color::Green);
+        this->changeDirection[1].setPosition(950.f + this->randDogs[0]->getGlobalBounds().width,
+                                             400.f + this->randDogs[0]->getGlobalBounds().height);
+        this->changeDirection[2].setFillColor(sf::Color::Green);
+        this->changeDirection[2].setPosition(950.f + this->randDogs[0]->getGlobalBounds().width,
+                                             220.f + this->randDogs[0]->getGlobalBounds().height);
+        for(int i = 0; i<3; i++){
+            this->firstTime.push_back(true);
+        }
         //Finish
         this->finish = std::make_unique<Finish>();
         this->finish->setScale(0.8f,0.8f);
