@@ -145,6 +145,18 @@ void Game::updateCombatPlayer(){
         }
         counter++;
     }
+    unsigned counter2 = 0;
+    for(auto *bul : this->playerBullets){
+        for(size_t i = 0; i<this->randDogs.size();i++){
+            if(bul->getGlobalBounds().intersects(this->randDogs[i]->getGlobalBounds())){
+                delete this->playerBullets.at(counter2);
+                this->playerBullets.erase(this->playerBullets.begin() + counter2);
+                this->randDogs.erase(this->randDogs.begin() + i);
+                counter2--;
+            }
+        }
+        counter2++;
+    }
 }
 
 

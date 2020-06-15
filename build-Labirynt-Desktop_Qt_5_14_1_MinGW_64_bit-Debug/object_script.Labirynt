@@ -10,6 +10,7 @@ game_init.o
 game_wrog.o
 gun.o
 main.o
+narrator.o
 player.o
 randomdog.o
 rifle.o

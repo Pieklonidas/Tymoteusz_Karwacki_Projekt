@@ -21,6 +21,7 @@ void Game::endLevel(){
         this->dirY.clear();
         this->distance.clear();
         this->counterRemoveWall.clear();
+        this->randDogs.clear();
         for(auto *bul : this->enemyBullets){
             delete bul;
         }
@@ -579,6 +580,11 @@ void Game::createLevel(int level){
         this->player->setTexture(this->textures_["GRACZ"]);
         this->player->setPosition(0.f,245.f);
         this->player->setScale(0.5f,0.5f);
+        //Weapons
+        std::unique_ptr<Weapons> rifle = std::make_unique<Rifle>(this->textures_["RIFLE"]);
+        this->weapons.push_back(std::move(rifle));
+        this->weapons[0]->setPosition(1146.f,36.f);
+        this->weapons[0]->setScale(0.3f,0.3f);
         //Strzelcy
         for(int i = 0; i<2;i++){
             std::unique_ptr<Sagittarius> sag = std::make_unique<Sagittarius>(this->textures_["STRZELEC"]);

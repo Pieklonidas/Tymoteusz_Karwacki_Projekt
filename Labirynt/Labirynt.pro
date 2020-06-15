@@ -16,6 +16,7 @@ SOURCES += \
         game_wrog.cpp \
         gun.cpp \
         main.cpp \
+        narrator.cpp \
         player.cpp \
         randomdog.cpp \
         rifle.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     finish.h \
     game.h \
     gun.h \
+    narrator.h \
     player.h \
     randomdog.h \
     rifle.h \

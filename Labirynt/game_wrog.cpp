@@ -108,9 +108,14 @@ void Game::updateCombat(){
             delete this->enemyBullets.at(counter);
             this->enemyBullets.erase(this->enemyBullets.begin() + counter);
             counter--;
-            endgame = true;
+            this->endgame = true;
         }
         counter++;
+    }
+    for(auto &dog : this->randDogs){
+        if(dog->getGlobalBounds().intersects(this->player->getBounds())){
+            this->endgame = true;
+        }
     }
 }
 

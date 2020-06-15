@@ -89,6 +89,10 @@ void Game::updatePollEvents(){
             this->distance.clear();
             this->enemyBullets.clear();
             this->counterRemoveWall.clear();
+            this->randDogs.clear();
+            for(auto &w : this->weapons){
+                w->pickUpWeapon(false);
+            }
             this->weapons.clear();
             for(auto *bul : this->enemyBullets){
                 delete bul;
