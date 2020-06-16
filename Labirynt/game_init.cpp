@@ -46,6 +46,11 @@ void Game::initGui(){
     this->endgameText.setString("GAME OVER! PRES R TO RESTART");
     this->endgameText.setPosition(this->window_->getSize().x/2.f - this->endgameText.getGlobalBounds().width/2.f,
                                   this->window_->getSize().y/2.f - this->endgameText.getGlobalBounds().height/2.f);
+    //Tlo dla narratora
+    this->backgroundForNarrator.setSize(sf::Vector2f(this->window_->getSize().x,
+                                                     this->window_->getSize().y));
+    this->backgroundForNarrator.setFillColor(sf::Color(128,128,128,128));
+    this->backgroundForNarrator.setPosition(0.f,0.f);
 }
 
 void Game::initTextures(){
@@ -79,6 +84,8 @@ void Game::initTextures(){
     this->textures_["GUN"]->loadFromFile("Obrazki\\Gun.png");
     this->textures_["RANDOMDOG"] = new sf::Texture();
     this->textures_["RANDOMDOG"]->loadFromFile("Obrazki\\RandomDog.png");
+    this->textures_["NARRATOR"] = new sf::Texture();
+    this->textures_["NARRATOR"]->loadFromFile("Obrazki\\Narrator.png");
 }
 
 

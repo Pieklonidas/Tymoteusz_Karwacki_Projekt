@@ -13,11 +13,14 @@ private:
     std::stringstream ss;
     std::vector<char> lettersFromFile;
     unsigned counter;
+    bool isSpeaking;
 public:
     Narrator(sf::Texture* texture_);
     void updateText();
     void loadFile();
+    void setSpeaking(bool speak);
     void render(sf::RenderTarget& target);
+    bool getSpeaking();
 };
 
 #endif // NARRATOR_H

@@ -8,7 +8,9 @@ Narrator::Narrator(sf::Texture* texture_)
 {
     this->narrator.setTexture(*texture_);
     this->ss << "";
-    this->counter = 1;
+    this->counter = 0;
+    this->loadFile();
+    this->isSpeaking = true;
 }
 
 void Narrator::render(sf::RenderTarget &target){
@@ -19,21 +21,27 @@ void Narrator::render(sf::RenderTarget &target){
     }
     this->updateText();
     target.draw(this->speech);
-    std::string s = "";
-    for(size_t i = 0; i<this->lettersFromFile.size()&&i<this->counter; i++){
-        s.push_back(this->lettersFromFile[i]);
+    std::string s;
+    if(this->counter < this->lettersFromFile.size()/2){
+        s.push_back(this->lettersFromFile[counter]);
+        ss << s;
+        this->counter++;
     }
-    ss << s;
-    this->counter++;
+    if(this->speech.getGlobalBounds().width + this->speech.getGlobalBounds().left > target.getSize().x - 20.f){
+        ss << "\r\n";
+    }
+    s.clear();
 }
 
 void Narrator::loadFile(){
-    std::fstream text("Teksty\\Speech.txt");
+    std::fstream text("Teksty\\Speech.txt", std::ios::in);
     if(text.is_open()){
         while (!text.eof()) {
-            char letter;
-            text >> letter;
-            this->lettersFromFile.emplace_back(letter);
+            std::string letter;//
+            std::getline(text,letter);
+            for(size_t i = 0; i<letter.size(); i++){
+                this->lettersFromFile.emplace_back(letter[i]);
+            }
         }
 
     }
@@ -48,4 +56,12 @@ void Narrator::updateText(){
     this->speech.setOutlineThickness(5);
     this->speech.setPosition(this->narrator.getGlobalBounds().width,50.f);
     this->speech.setString(ss.str());
+}
+
+void Narrator::setSpeaking(bool speak){
+    this->isSpeaking = speak;
+}
+
+bool Narrator::getSpeaking(){
+    return this->isSpeaking;
 }

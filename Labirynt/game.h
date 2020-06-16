@@ -14,6 +14,7 @@
 #include "rifle.h"
 #include "gun.h"
 #include "randomdog.h"
+#include "narrator.h"
 #include <memory>
 #include <map>
 
@@ -34,6 +35,9 @@ private:
     //Gui
     sf::Font font;
     sf::Text endgameText;
+    //Narrator
+    std::unique_ptr<Narrator> narrator;
+    sf::RectangleShape backgroundForNarrator;
     //Gracz
     std::unique_ptr<Player> player;
     sf::FloatRect nextPos_;

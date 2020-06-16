@@ -49,7 +49,7 @@ void Game::run(){
             this->nextLevel++;
         }
         updatePollEvents();
-        if(!this->endgame){
+        if(!this->endgame&&!this->narrator->getSpeaking()){
             update();
         }
         render();
@@ -69,12 +69,15 @@ void Game::updatePollEvents(){
         - Zdarzenia
     */
     while (this->window_->pollEvent(this->ev_)) {
+
         if(this->ev_.type == sf::Event::Closed){
             this->window_->close();
         }
+
         if(this->ev_.key.code == sf::Keyboard::Escape){
             this->window_->close();
         }
+
         if(this->ev_.key.code == sf::Keyboard::R){
             this->endgame = false;
             this->nextLevel = this->level;
@@ -103,6 +106,7 @@ void Game::updatePollEvents(){
             }
             this->playerBullets.clear();
         }
+
         if(this->ev_.key.code == sf::Keyboard::E){
             for(auto &w : this->weapons){
                 if(this->player->getBounds().intersects(w->getGlobalBounds())){
@@ -110,12 +114,17 @@ void Game::updatePollEvents(){
                 }
             }
         }
+
         if(this->ev_.key.code == sf::Keyboard::Q){
             for(auto &w : this->weapons){
                 if(this->player->getBounds().intersects(w->getGlobalBounds())){
                     w->pickUpWeapon(false);
                 }
             }
+        }
+
+        if(this->ev_.key.code == sf::Keyboard::X){
+            this->narrator->setSpeaking(false);
         }
     }
 }
@@ -227,7 +236,11 @@ void Game::render(){
         }
     }
 
-
+    //Narrator
+    if(this->narrator->getSpeaking()){
+        this->window_->draw(this->backgroundForNarrator);
+        this->narrator->render(*this->window_);
+    }
     //endgame screen
     if(this->endgame){
         this->window_->draw(this->endgameText);
