@@ -27,9 +27,7 @@ void Narrator::render(sf::RenderTarget &target){
         ss << s;
         this->counter++;
     }
-    if(this->speech.getGlobalBounds().width + this->speech.getGlobalBounds().left > target.getSize().x - 20.f){
-        ss << "\r\n";
-    }
+
     s.clear();
 }
 

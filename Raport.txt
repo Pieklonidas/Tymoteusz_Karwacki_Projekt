@@ -4,6 +4,8 @@ Strza³: "Z"
 Podniesienie broni gdy na niej stoimy: "E"
 Wyrzucenie broni: "Q"
 Restart poziomu: "R"
+Pominiêcie okna dialogowego: "X"
+
 Raport:
 22.05.2020: 
 Dodanie klasy "Game", inicjalizacja okna, dodanie mo¿liwoœci zamkniêcia okna za pomoc¹ escape i "x", zrobienie pierwszej postaci "maæka_2".
@@ -28,3 +30,7 @@ Dodanie klasy "Gun" dziedzicz¹cej po klasie "Weapons", zrobienie pistoletu, z kt
 dodanie mo¿liwoœci strzelenia w przeciwnika, na ten moment nic nie dzieje siê z przeciwnikiem po trafieniu, porz¹dne zakomentowanie niektórych funkcji, dodanie dodatkowych plików typu .cpp oraz roz³o¿enie wielu funkcji z pliku game.cpp na inne pliki .cpp
 12.06.2020:
 Dodanie mo¿liwoœci pokonania przeciwnika, stowarzenie 4 poziomu, jeszcze niedokoñczonego.
+16.06.2020:
+Dodanie klasy "RandomDog" dziedzicz¹cej po sf::Sprite, pies porusza siê w sposób losowy, nie wychodz¹c oczywiœcie poza zakres labiryntu, pokonuje gracza odrazu po dotkniêciu, mo¿na go zestrzeliæ.
+17.06.2020:
+Próba dodania tekstu na pocz¹tku pierwszego poziomu, tekst jest wczytywany z pliku Speech.txt, tekst jest wyœwietlany literka po literce na ka¿d¹ klatkê, jednak nie ma jeszcze zawijania tekstu.

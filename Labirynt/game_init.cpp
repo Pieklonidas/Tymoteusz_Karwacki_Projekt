@@ -49,7 +49,7 @@ void Game::initGui(){
     //Tlo dla narratora
     this->backgroundForNarrator.setSize(sf::Vector2f(this->window_->getSize().x,
                                                      this->window_->getSize().y));
-    this->backgroundForNarrator.setFillColor(sf::Color(128,128,128,128));
+    this->backgroundForNarrator.setFillColor(sf::Color(0,0,0,50));
     this->backgroundForNarrator.setPosition(0.f,0.f);
 }
 
