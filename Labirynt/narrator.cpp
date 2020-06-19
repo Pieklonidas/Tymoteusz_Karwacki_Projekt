@@ -4,12 +4,12 @@
 #include <fstream>
 
 
-Narrator::Narrator(sf::Texture* texture_)
+Narrator::Narrator(sf::Texture* texture_, int level_)
 {
+    this->level = level_;
     this->narrator.setTexture(*texture_);
     this->ss << "";
     this->counter = 0;
-    this->loadFile();
     this->isSpeaking = true;
 }
 
@@ -21,21 +21,23 @@ void Narrator::render(sf::RenderTarget &target){
     }
     this->updateText();
     target.draw(this->speech);
-    std::string s;
-    if(this->counter < this->lettersFromFile.size()/2){
-        s.push_back(this->lettersFromFile[counter]);
-        ss << s;
+    if(this->speech.getGlobalBounds().left + this->speech.getGlobalBounds().width >= target.getSize().x - 10.f){
+        ss.seekp(-1,std::ios_base::end);
+        ss << "\r\n";
+        ss << this->lettersFromFile[counter-1];
+
+    }
+    if(this->counter < this->lettersFromFile.size()){
+        ss << this->lettersFromFile[counter];
         this->counter++;
     }
-
-    s.clear();
 }
 
 void Narrator::loadFile(){
     std::fstream text("Teksty\\Speech.txt", std::ios::in);
     if(text.is_open()){
         while (!text.eof()) {
-            std::string letter;//
+            std::string letter;
             std::getline(text,letter);
             for(size_t i = 0; i<letter.size(); i++){
                 this->lettersFromFile.emplace_back(letter[i]);

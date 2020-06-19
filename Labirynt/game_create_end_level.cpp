@@ -124,7 +124,7 @@ void Game::createLevel(int level){
         walls[36]->setTextureRect(sf::IntRect(0,0,20,50));
         walls[36]->setPosition(130.f,370.f);
         //narrator
-        this->narrator = std::make_unique<Narrator>(this->textures_["NARRATOR"]);
+        this->narrator = std::make_unique<Narrator>(this->textures_["NARRATOR"], level);
         this->narrator->loadFile();
         //player
         this->player = std::make_unique<Player>();

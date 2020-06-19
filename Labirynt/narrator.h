@@ -12,10 +12,11 @@ private:
     sf::Text speech;
     std::stringstream ss;
     std::vector<char> lettersFromFile;
+    int level;
     unsigned counter;
     bool isSpeaking;
 public:
-    Narrator(sf::Texture* texture_);
+    Narrator(sf::Texture* texture_, int level_);
     void updateText();
     void loadFile();
     void setSpeaking(bool speak);
