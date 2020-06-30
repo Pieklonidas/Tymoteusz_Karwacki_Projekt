@@ -15,6 +15,7 @@
 #include "gun.h"
 #include "randomdog.h"
 #include "narrator.h"
+#include "boss.h"
 #include <memory>
 #include <map>
 
@@ -73,6 +74,8 @@ private:
     sf::Clock* clock;
     //Koniec gry
     bool endgame;
+    //Boss
+    std::vector<std::unique_ptr<Boss>> boss;
     //Inicjacje
     void initWindow();
     void initTime();
@@ -97,6 +100,7 @@ public:
     void updateBoxRemovableWallCollision();
     void updateBoxPlayerCollision();
     void updateButtonBox();
+    void updateBoss();
     void teleportPlayer();
     void removeWalls();
     void updatePlayer();

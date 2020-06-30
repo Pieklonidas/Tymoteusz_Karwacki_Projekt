@@ -105,6 +105,12 @@ void Game::updatePollEvents(){
                 delete bul;
             }
             this->playerBullets.clear();
+            if(this->boss.size()>0){
+                for(size_t i = 0; i<boss.size(); i++){
+                    this->boss[i]->reset();
+                }
+            }
+            this->boss.clear();
         }
 
         if(this->ev_.key.code == sf::Keyboard::E){
@@ -148,6 +154,7 @@ void Game::update(){
     this->dogChangeDir();
     this->updateRandDogs();
     this->updateBullets();
+    this->updateBoss();
     this->updatePlayerBullets();
     this->updateCombatPlayer();
     this->updateCombat();
@@ -236,6 +243,11 @@ void Game::render(){
         }
     }
 
+    if(this->boss.size()>0){
+        for(size_t i = 0; i<this->boss.size(); i++){
+            this->boss[i]->render(*this->window_);
+        }
+    }
     //Narrator
     if(this->narrator->getSpeaking()){
         this->window_->draw(this->backgroundForNarrator);
@@ -245,6 +257,7 @@ void Game::render(){
     if(this->endgame){
         this->window_->draw(this->endgameText);
     }
+
 
     this->window_->display();
 }

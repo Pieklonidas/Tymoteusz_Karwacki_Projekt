@@ -4,6 +4,8 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+        boss.cpp \
+        bossbullet.cpp \
         boxes.cpp \
         bullets.cpp \
         button.cpp \
@@ -35,6 +37,8 @@ CONFIG(debug, debug|release){
 }
 
 HEADERS += \
+    boss.h \
+    bossbullet.h \
     boxes.h \
     bullets.h \
     button.h \

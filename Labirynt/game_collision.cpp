@@ -305,6 +305,8 @@ void Game::updateButtonBox(){
     }
 }
 
+
+
 void Game::removeWalls(){
     /*
         - Gdy odpowiedni przycisk jest wcisniety, wtedy odpowiednia brama zaczyna sie otwierac/przesuwac

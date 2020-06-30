@@ -1,3 +1,5 @@
+boss.o
+bossbullet.o
 boxes.o
 bullets.o
 button.o

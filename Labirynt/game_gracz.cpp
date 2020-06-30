@@ -157,6 +157,18 @@ void Game::updateCombatPlayer(){
         }
         counter2++;
     }
+    unsigned counter3 = 0;
+    for(auto *bul : this->playerBullets){
+        for(size_t i = 0; i<this->boss.size(); i++){
+            if(bul->getGlobalBounds().intersects(this->boss[i]->getBounds())){
+                this->boss[i]->getHit();
+                delete this->playerBullets.at(counter3);
+                this->playerBullets.erase(this->playerBullets.begin() + counter3);
+                counter3--;
+            }
+        }
+        counter3++;
+    }
 }
 
 

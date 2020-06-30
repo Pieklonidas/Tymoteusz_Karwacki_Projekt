@@ -24,7 +24,7 @@ void Game::initVariables(){
         - Utworznie niektorych poczatkowych wartosci gry
     */
     this->endgame = false;
-    this->level = 1;
+    this->level = 5;
     this->nextLevel = this->level;
 }
 

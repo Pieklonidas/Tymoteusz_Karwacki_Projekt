@@ -165,3 +165,39 @@ void Game::updateBullets(){
         counter2++;
     }
 }
+
+void Game::updateBoss()
+{
+    if(this->boss.size()>0)
+    {
+        this->finish->followBoss(*this->boss[0]);
+        for(size_t i = 0; i<this->boss.size(); i++){
+            this->boss[i]->updateGui();
+            this->boss[i]->die();
+            this->boss[i]->move();
+            this->boss[i]->airAttack(*this->player);
+            this->boss[i]->shoot(*this->player);
+            this->boss[i]->closeHit(*this->player);
+            if(this->boss[i]->endGame()){
+                this->endgame = true;
+            }
+            if(this->boss[i]->isDead()){
+                this->boss.erase(this->boss.begin() + i);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
