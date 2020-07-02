@@ -130,8 +130,8 @@ void Game::createLevel(int level){
         walls[36]->setTextureRect(sf::IntRect(0,0,20,50));
         walls[36]->setPosition(130.f,370.f);
         //narrator
-        this->narrator = std::make_unique<Narrator>(this->textures_["NARRATOR"], level);
-        this->narrator->loadFile();
+        this->narrator = std::make_unique<Narrator>(this->textures_["NARRATOR"]);
+        this->narrator->loadFile("Teksty\\Speech.txt");
         //this->narrator->setSpeaking(true);
         //player
         this->player = std::make_unique<Player>();
@@ -218,8 +218,8 @@ void Game::createLevel(int level){
         this->walls[10]->setTextureRect(sf::IntRect(0,0,40,110));
         this->walls[10]->setPosition(1000.f,0.f);
         //narrator
-        this->narrator = std::make_unique<Narrator>(this->textures_["NARRATOR"], level);
-        this->narrator->loadFile();
+        this->narrator = std::make_unique<Narrator>(this->textures_["NARRATOR"]);
+        this->narrator->loadFile("Teksty\\Speech2.txt");
         //player
         this->player = std::make_unique<Player>();
         this->player->setTexture(this->textures_["GRACZ"]);
@@ -363,8 +363,8 @@ void Game::createLevel(int level){
         this->walls[24]->setTextureRect(sf::IntRect(0,0,150,30));
         this->walls[24]->setPosition(560.f,340.f);
         //narrator
-        this->narrator = std::make_unique<Narrator>(this->textures_["NARRATOR"], level);
-        this->narrator->loadFile();
+        this->narrator = std::make_unique<Narrator>(this->textures_["NARRATOR"]);
+        this->narrator->loadFile("Teksty\\Speech3.txt");
         //boxes
         for(int i = 0; i<1; i++){
             std::unique_ptr<Boxes> box = std::make_unique<Boxes>();
@@ -539,8 +539,8 @@ void Game::createLevel(int level){
         this->walls[41]->setTextureRect(sf::IntRect(0,0,60,30));
         this->walls[41]->setPosition(1140.f,600.f);
         //narrator
-        this->narrator = std::make_unique<Narrator>(this->textures_["NARRATOR"], level);
-        this->narrator->loadFile();
+        this->narrator = std::make_unique<Narrator>(this->textures_["NARRATOR"]);
+        this->narrator->loadFile("Teksty\\Speech4.txt");
         //Teleports
         for(int i = 0; i<2; i++){
             std::unique_ptr<Teleport> tp = std::make_unique<Teleport>();
@@ -650,8 +650,8 @@ void Game::createLevel(int level){
     }
     if(level == 5){
         //narrator
-        this->narrator = std::make_unique<Narrator>(this->textures_["NARRATOR"], level);
-        this->narrator->loadFile();
+        this->narrator = std::make_unique<Narrator>(this->textures_["NARRATOR"]);
+        this->narrator->loadFile("Teksty\\Speech5.txt");
         //weapons
         std::unique_ptr<Weapons> rifle = std::make_unique<Rifle>(this->textures_["RIFLE"]);
         this->weapons.push_back(std::move(rifle));
@@ -671,6 +671,21 @@ void Game::createLevel(int level){
         //boss
         std::unique_ptr<Boss> b = std::make_unique<Boss>();
         this->boss.push_back(std::move(b));
+    }
+    if(level >= 6){
+        //narrator
+        this->narrator = std::make_unique<Narrator>(this->textures_["NARRATOR"]);
+        this->narrator->loadFile("Teksty\\Speech6.txt");
+        //Player
+        this->player = std::make_unique<Player>();
+        this->player->setTexture(this->textures_["GRACZ"]);
+        this->player->setPosition(0.f,300.f);
+        this->player->setScale(0.8f,0.8f);
+        //Finish
+        this->finish = std::make_unique<Finish>();
+        this->finish->setScale(0.8f,0.8f);
+        this->finish->setTexture(*this->textures_["FINISH"]);
+        this->finish->setPosition(1150.f,240.f);
     }
 }
 

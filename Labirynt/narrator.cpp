@@ -4,9 +4,8 @@
 #include <fstream>
 
 
-Narrator::Narrator(sf::Texture* texture_, int level_)
+Narrator::Narrator(sf::Texture* texture_)
 {
-    this->level = level_;
     this->narrator.setTexture(*texture_);
     this->ss << "";
     this->counter = 0;
@@ -33,8 +32,8 @@ void Narrator::render(sf::RenderTarget &target){
     }
 }
 
-void Narrator::loadFile(){
-    std::fstream text("Teksty\\Speech.txt", std::ios::in);
+void Narrator::loadFile(std::string file){
+    std::fstream text(file, std::ios::in);
     if(text.is_open()){
         while (!text.eof()) {
             std::string letter;

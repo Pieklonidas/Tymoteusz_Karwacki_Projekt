@@ -113,7 +113,7 @@ void Game::updatePollEvents(){
             this->boss.clear();
         }
 
-        if(this->ev_.key.code == sf::Keyboard::E){
+        if(this->ev_.key.code == sf::Keyboard::Up){
             for(auto &w : this->weapons){
                 if(this->player->getBounds().intersects(w->getGlobalBounds())){
                     w->pickUpWeapon(true);
