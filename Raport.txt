@@ -34,3 +34,5 @@ Dodanie mo¿liwoœci pokonania przeciwnika, stowarzenie 4 poziomu, jeszcze niedoko
 Dodanie klasy "RandomDog" dziedzicz¹cej po sf::Sprite, pies porusza siê w sposób losowy, nie wychodz¹c oczywiœcie poza zakres labiryntu, pokonuje gracza odrazu po dotkniêciu, mo¿na go zestrzeliæ.
 17.06.2020:
 Próba dodania tekstu na pocz¹tku pierwszego poziomu, tekst jest wczytywany z pliku Speech.txt, tekst jest wyœwietlany literka po literce na ka¿d¹ klatkê, jednak nie ma jeszcze zawijania tekstu.
+12.07.2020:
+Ca³kowite zakoñczenie gry, dodanie monologu przed ka¿dym poziomem w³¹cznie z zawijaniem tekstu, stworzenie finalnej walki z bossem, w walce spadaj¹ z góry losowej wielkoœci pociski, boss rusza siê w górê i w dó³ oraz strzela do nas pociskami, które lec¹ w naszym kierunku, boss ma pasek zdrowia, dodanie kolizji pude³ek z granicami okna.

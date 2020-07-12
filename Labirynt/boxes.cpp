@@ -7,6 +7,34 @@ void Boxes::initVariables(){
     this->can_move_right = true;
 }
 
+void Boxes::BoundsCollision()
+{
+    //Top collision
+    if(getGlobalBounds().top < 0){
+        setPosition(getPosition().x,
+                    0.f);
+        this->can_move_top = false;
+    }
+    //Bottom Collision
+    else if(getGlobalBounds().top+getGlobalBounds().height > 600){
+        setPosition(getPosition().x,
+                    600.f - getGlobalBounds().height);
+        this->can_move_bot = false;
+    }
+    //Left collision
+    if(getGlobalBounds().left < 0){
+        setPosition(0.f,
+                    getPosition().y);
+        this->can_move_left = false;
+    }
+    //Right Collision
+    else if(getGlobalBounds().left+getGlobalBounds().width > 1200){
+        setPosition(1200.f - getGlobalBounds().width,
+                    getPosition().y);
+        this->can_move_right = false;
+    }
+}
+
 //cons/des
 Boxes::Boxes()
 {
@@ -35,6 +63,7 @@ const bool Boxes::getCanMoveRight() const{
 }
 
 void Boxes::setCanMove(sf::FloatRect wall){
+    this->BoundsCollision();
     if(getGlobalBounds().intersects(wall)){
         //bottom collision
         if(getGlobalBounds().top < wall.top

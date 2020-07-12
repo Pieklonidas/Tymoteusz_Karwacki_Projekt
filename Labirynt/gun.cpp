@@ -6,6 +6,7 @@ Gun::Gun(sf::Texture* texture) : Weapons(texture)
     this->reloadTimeMax = 25.f;
     this->reloadTime = this->reloadTimeMax;
     this->bulletSpeed = 20.f;
+    this->isPicked_ = false;
 }
 
 sf::Vector2f Gun::shoot(){

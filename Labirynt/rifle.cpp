@@ -4,6 +4,7 @@ Rifle::Rifle(sf::Texture* texture) : Weapons(texture){
     this->reloadTimeMax = 10.f;
     this->reloadTime = this->reloadTimeMax;
     this->bulletSpeed = 30.f;
+    this->isPicked_ = false;
 }
 
 

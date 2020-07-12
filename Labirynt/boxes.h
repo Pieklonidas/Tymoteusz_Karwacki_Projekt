@@ -12,6 +12,8 @@ private:
     bool can_move_right;
 
     void initVariables();
+    void BoundsCollision();
+
 public:
     Boxes();
     ~Boxes();
