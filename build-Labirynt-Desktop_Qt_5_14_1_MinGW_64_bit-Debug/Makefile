@@ -982,7 +982,10 @@ finish.o: ../Labirynt/finish.cpp ../Labirynt/finish.h \
 		C:/SFML-2.5.1/include/SFML/Graphics/Glsl.inl \
 		C:/SFML-2.5.1/include/SFML/Graphics/Sprite.hpp \
 		C:/SFML-2.5.1/include/SFML/Graphics/Text.hpp \
-		C:/SFML-2.5.1/include/SFML/Graphics/VertexBuffer.hpp
+		C:/SFML-2.5.1/include/SFML/Graphics/VertexBuffer.hpp \
+		../Labirynt/boss.h \
+		../Labirynt/player.h \
+		../Labirynt/bossbullet.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o finish.o ..\Labirynt\finish.cpp
 
 game.o: ../Labirynt/game.cpp ../Labirynt/game.h \
@@ -1065,6 +1068,8 @@ game.o: ../Labirynt/game.cpp ../Labirynt/game.h \
 		../Labirynt/boxes.h \
 		../Labirynt/button.h \
 		../Labirynt/finish.h \
+		../Labirynt/boss.h \
+		../Labirynt/bossbullet.h \
 		../Labirynt/teleport.h \
 		../Labirynt/sagittarius.h \
 		../Labirynt/bullets.h \
@@ -1072,9 +1077,7 @@ game.o: ../Labirynt/game.cpp ../Labirynt/game.h \
 		../Labirynt/weapons.h \
 		../Labirynt/gun.h \
 		../Labirynt/randomdog.h \
-		../Labirynt/narrator.h \
-		../Labirynt/boss.h \
-		../Labirynt/bossbullet.h
+		../Labirynt/narrator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o game.o ..\Labirynt\game.cpp
 
 game_collision.o: ../Labirynt/game_collision.cpp ../Labirynt/game.h \
@@ -1157,6 +1160,8 @@ game_collision.o: ../Labirynt/game_collision.cpp ../Labirynt/game.h \
 		../Labirynt/boxes.h \
 		../Labirynt/button.h \
 		../Labirynt/finish.h \
+		../Labirynt/boss.h \
+		../Labirynt/bossbullet.h \
 		../Labirynt/teleport.h \
 		../Labirynt/sagittarius.h \
 		../Labirynt/bullets.h \
@@ -1164,9 +1169,7 @@ game_collision.o: ../Labirynt/game_collision.cpp ../Labirynt/game.h \
 		../Labirynt/weapons.h \
 		../Labirynt/gun.h \
 		../Labirynt/randomdog.h \
-		../Labirynt/narrator.h \
-		../Labirynt/boss.h \
-		../Labirynt/bossbullet.h
+		../Labirynt/narrator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o game_collision.o ..\Labirynt\game_collision.cpp
 
 game_create_end_level.o: ../Labirynt/game_create_end_level.cpp ../Labirynt/game.h \
@@ -1249,6 +1252,8 @@ game_create_end_level.o: ../Labirynt/game_create_end_level.cpp ../Labirynt/game.
 		../Labirynt/boxes.h \
 		../Labirynt/button.h \
 		../Labirynt/finish.h \
+		../Labirynt/boss.h \
+		../Labirynt/bossbullet.h \
 		../Labirynt/teleport.h \
 		../Labirynt/sagittarius.h \
 		../Labirynt/bullets.h \
@@ -1256,9 +1261,7 @@ game_create_end_level.o: ../Labirynt/game_create_end_level.cpp ../Labirynt/game.
 		../Labirynt/weapons.h \
 		../Labirynt/gun.h \
 		../Labirynt/randomdog.h \
-		../Labirynt/narrator.h \
-		../Labirynt/boss.h \
-		../Labirynt/bossbullet.h
+		../Labirynt/narrator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o game_create_end_level.o ..\Labirynt\game_create_end_level.cpp
 
 game_gracz.o: ../Labirynt/game_gracz.cpp ../Labirynt/game.h \
@@ -1341,6 +1344,8 @@ game_gracz.o: ../Labirynt/game_gracz.cpp ../Labirynt/game.h \
 		../Labirynt/boxes.h \
 		../Labirynt/button.h \
 		../Labirynt/finish.h \
+		../Labirynt/boss.h \
+		../Labirynt/bossbullet.h \
 		../Labirynt/teleport.h \
 		../Labirynt/sagittarius.h \
 		../Labirynt/bullets.h \
@@ -1348,9 +1353,7 @@ game_gracz.o: ../Labirynt/game_gracz.cpp ../Labirynt/game.h \
 		../Labirynt/weapons.h \
 		../Labirynt/gun.h \
 		../Labirynt/randomdog.h \
-		../Labirynt/narrator.h \
-		../Labirynt/boss.h \
-		../Labirynt/bossbullet.h
+		../Labirynt/narrator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o game_gracz.o ..\Labirynt\game_gracz.cpp
 
 game_init.o: ../Labirynt/game_init.cpp ../Labirynt/game.h \
@@ -1433,6 +1436,8 @@ game_init.o: ../Labirynt/game_init.cpp ../Labirynt/game.h \
 		../Labirynt/boxes.h \
 		../Labirynt/button.h \
 		../Labirynt/finish.h \
+		../Labirynt/boss.h \
+		../Labirynt/bossbullet.h \
 		../Labirynt/teleport.h \
 		../Labirynt/sagittarius.h \
 		../Labirynt/bullets.h \
@@ -1440,9 +1445,7 @@ game_init.o: ../Labirynt/game_init.cpp ../Labirynt/game.h \
 		../Labirynt/weapons.h \
 		../Labirynt/gun.h \
 		../Labirynt/randomdog.h \
-		../Labirynt/narrator.h \
-		../Labirynt/boss.h \
-		../Labirynt/bossbullet.h
+		../Labirynt/narrator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o game_init.o ..\Labirynt\game_init.cpp
 
 game_wrog.o: ../Labirynt/game_wrog.cpp ../Labirynt/game.h \
@@ -1525,6 +1528,8 @@ game_wrog.o: ../Labirynt/game_wrog.cpp ../Labirynt/game.h \
 		../Labirynt/boxes.h \
 		../Labirynt/button.h \
 		../Labirynt/finish.h \
+		../Labirynt/boss.h \
+		../Labirynt/bossbullet.h \
 		../Labirynt/teleport.h \
 		../Labirynt/sagittarius.h \
 		../Labirynt/bullets.h \
@@ -1532,9 +1537,7 @@ game_wrog.o: ../Labirynt/game_wrog.cpp ../Labirynt/game.h \
 		../Labirynt/weapons.h \
 		../Labirynt/gun.h \
 		../Labirynt/randomdog.h \
-		../Labirynt/narrator.h \
-		../Labirynt/boss.h \
-		../Labirynt/bossbullet.h
+		../Labirynt/narrator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o game_wrog.o ..\Labirynt\game_wrog.cpp
 
 gun.o: ../Labirynt/gun.cpp ../Labirynt/gun.h \
@@ -1695,6 +1698,8 @@ main.o: ../Labirynt/main.cpp ../Labirynt/game.h \
 		../Labirynt/boxes.h \
 		../Labirynt/button.h \
 		../Labirynt/finish.h \
+		../Labirynt/boss.h \
+		../Labirynt/bossbullet.h \
 		../Labirynt/teleport.h \
 		../Labirynt/sagittarius.h \
 		../Labirynt/bullets.h \
@@ -1702,9 +1707,7 @@ main.o: ../Labirynt/main.cpp ../Labirynt/game.h \
 		../Labirynt/weapons.h \
 		../Labirynt/gun.h \
 		../Labirynt/randomdog.h \
-		../Labirynt/narrator.h \
-		../Labirynt/boss.h \
-		../Labirynt/bossbullet.h
+		../Labirynt/narrator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ..\Labirynt\main.cpp
 
 narrator.o: ../Labirynt/narrator.cpp ../Labirynt/narrator.h \
